@@ -13,7 +13,7 @@ This project demonstrates basic usage of the ATmega328P microcontroller by blink
 
 ## Code
 - Written in **C** (bare-metal, register-level programming)
-- Uses **PB5** (Arduino digital pin 13) for LED output
+- Uses **PB5** which is connected to the built in LED labeled "L" on the Uno R3 board
 - No external libraries are required
 
 ## Usage
