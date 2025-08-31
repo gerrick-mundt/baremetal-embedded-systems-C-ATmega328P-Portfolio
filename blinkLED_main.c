@@ -15,13 +15,13 @@ int main(void)
         // PORTB = PORTB | (1 << PB5);
         PORTB |= (1 << PB5);
 
-        // Wait
+        // Wait 1 seconds (1000 ms)
         _delay_ms(1000);
 
         // Unset Port B Pin 5 (PB5)
         PORTB &= ~(1 << PB5);
 
-        // Wait some more
+        // Wait 1 seconds (1000 ms)
         _delay_ms(1000);
     }
 }
