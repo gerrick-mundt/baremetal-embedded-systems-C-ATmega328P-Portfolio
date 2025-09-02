@@ -1,5 +1,8 @@
+// Header that is the gateway to the ATmega328P
+// hardware for baremetal coding
 #include <avr/io.h>
 
+// Main function, used to turn LED on and off with push-button
 int main()
 {
     // Write PD2 as an input
@@ -30,5 +33,6 @@ int main()
         }
     }
 }
+
 
 
