@@ -17,7 +17,6 @@ int main()
     // Generate while loop that continuously checks for input signal
     // and writes PD7 high whenever the button switch attached to 
     // PD2 is high
-
     while(1) 
     {
         // Read state of PD2
@@ -33,3 +32,4 @@ int main()
         }
     }
 }
+
