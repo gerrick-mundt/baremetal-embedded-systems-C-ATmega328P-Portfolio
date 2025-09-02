@@ -1,5 +1,5 @@
-// Header that is the gateway to the ATmega328P
-// hardware for baremetal coding
+// Header that is the gateway to the ATmega328P & other avr chips
+// hardware for baremetal C programming
 #include <avr/io.h>
 
 // Main function, used to turn LED on and off with push-button
@@ -33,6 +33,7 @@ int main()
         }
     }
 }
+
 
 
 
