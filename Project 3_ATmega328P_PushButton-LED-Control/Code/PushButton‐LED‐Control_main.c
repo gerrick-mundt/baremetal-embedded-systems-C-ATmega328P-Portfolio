@@ -24,7 +24,6 @@ int main()
             // Set PD7 as high (lights the LED)
             PORTD |= (1 << PD7);
         }
-
         else
         {
             // Set PD7 as low (Leaves LED in off state)
@@ -32,3 +31,4 @@ int main()
         }
     }
 }
+
