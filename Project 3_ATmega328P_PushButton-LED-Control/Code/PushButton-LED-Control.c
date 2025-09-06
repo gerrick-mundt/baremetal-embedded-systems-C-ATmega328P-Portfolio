@@ -34,7 +34,7 @@ int main()
     // writes the LED circuit output either HIGH or LOW
     while(1)
     {
-        // Read state of PD7
+        // Read state of PD7, ! symbol inverts the logic in the parenthesis
         if(!(PIND & (1 << PD7)))
         {
             // Write PD4 HIGH
