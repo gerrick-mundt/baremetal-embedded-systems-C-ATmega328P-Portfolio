@@ -26,7 +26,7 @@ int main()
     // Set PD7 (SPST Input Pin) to an input (Direction register 0 value)
     DDRD &= ~(1 << PD7);
 
-    // Set Input type to floating input (Reader register 0 value)
+    // Set Input type to floating input (Read register 0 value)
     PORTD &= ~(1 << PD7);
 
     // This while loop continuously reads the state of pin PD7
