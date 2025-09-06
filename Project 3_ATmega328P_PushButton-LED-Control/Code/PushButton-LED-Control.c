@@ -34,7 +34,9 @@ int main()
     // writes the LED circuit output either HIGH or LOW
     while(1)
     {
-        // Read state of PD7, ! symbol inverts the logic in the parenthesis
+        // Read state of PD7. If read is LOW, LOW = !(HIGH), the button has been
+        // pressed since the circuit connects to ground
+        // NOTE: ! symbol inverts the logic in the parenthesis
         if(!(PIND & (1 << PD7)))
         {
             // Write PD4 HIGH
