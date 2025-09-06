@@ -26,7 +26,7 @@ int main()
     // Set PD7 (SPST Input Pin) to an input (Direction register 0 value)
     DDRD &= ~(1 << PD7);
 
-    // Set Input type to floating input (Read register 0 value)
+    // Set Input type to Pull-up Resistor configuration (Read register 1 value)
     PORTD |= (1 << PD7);
 
     // This while loop continuously reads the state of pin PD7
@@ -34,8 +34,8 @@ int main()
     // writes the LED circuit output either HIGH or LOW
     while(1)
     {
-        // Read state of PD7. If read is LOW, LOW = !(HIGH), the button has been
-        // pressed since the circuit connects to ground
+        // Read state of PD7. If read is LOW (GND), LOW = !(HIGH), 
+        // the button has been pressed
         // NOTE: ! symbol inverts the logic in the parenthesis
         if(!(PIND & (1 << PD7)))
         {
