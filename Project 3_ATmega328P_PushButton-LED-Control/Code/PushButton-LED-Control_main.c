@@ -27,7 +27,7 @@ int main()
     DDRD &= ~(1 << PD7);
 
     // Set Input type to floating input (Read register 0 value)
-    PORTD &= ~(1 << PD7);
+    PORTD |= (1 << PD7);
 
     // This while loop continuously reads the state of pin PD7
     // (SPST button circuit input) and depending on the value of that pin read,
@@ -48,4 +48,4 @@ int main()
             PORTD &= ~(1 << PD4);
         }
     }
-}   
+}  
