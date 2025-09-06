@@ -35,7 +35,7 @@ int main()
     while(1)
     {
         // Read state of PD7
-        if(PIND & (1 << PD7))
+        if(!(PIND & (1 << PD7)))
         {
             // Write PD4 HIGH
             PORTD |= (1 << PD4);
