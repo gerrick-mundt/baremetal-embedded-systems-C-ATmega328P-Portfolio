@@ -1,32 +1,40 @@
-## Step 1: Write Code
-1. include necessary headers
-2. Write microcontroller logic 
+# Project Overview
+The objective of this project is to gain hands-on familiarity with the ATmega328P microcontroller architecture, learn how to configure digital GPIO pins using the Data Direction Registers (DDR), and implement basic register-level control to toggle an output pin. Specifically, it aims to control the PB5 pin to blink the built-in LED on the Arduino Uno R3, providing foundational experience in low-level embedded programming.
 
-## Step 2: Generate the .hex file
-1. Create a _**makefile**_ in the same folder as your main source file. Do 
-this by creating a new file and naming it "Makefile".
-2. Copy and paste the following: [Makefile Template](https://github.com/gerrick-mundt/baremetal-embedded-systems-C-ATmega328P-Portfolio/blob/main/Makefile)
-3. If your main file is not named main.c update the SRC = main.c line
-4. Make sure you have the correct compiler path. If your path is not CC = avr-gcc, change the name to the correct one (e.g. CC = /opt/homebrew/bin/avr-gcc) 
-5. Open a terminal in VS code (Terminal > New Terminal)
-6. (Optional) Run: “make clean”
-7. Run: “make” (this compiles your code)
+# Software Description
+## Software Used
+* Development tool(s): VS Code
+* Development Language: C
+* Included Headers: 1) <avr/io.h>, 2) <util/delay.h>
 
-## Step 3: Upload the program to the Uno R3 using bootloader
-1. Connect the Uno R3 to your computer using US
-2. Open up the terminal in VS Code
-3. Open a terminal in VS Code
-4. In the terminal, verify the USB ports using: ls /dev/tty.*
-5. Write down the USB port you are bootloading over (e.g., /dev/tty.usbmodem1101)
-6. Upload the .hex file using avrdude by running the following command: avrdude -c arduino -p m328p -P /dev/tty.usbmodem1101 -b 115200 -U flash:w:main.hex
+## Project Files
+* List of .c and .h files: **[blinkLED_main.c](https://github.com/gerrick-mundt/baremetal-embedded-systems-C-ATmega328P-Portfolio/blob/main/Project%201_ATmega328P_Blink-Built-in%20LED/blinkLED_main.c)**
+* Source file Descriptions: Contains the source code responsible for configuring the ATmega328P's PB5 pin as an output using the Data Direction Register (DDR) and toggling its state in a timed loop.
 
--c arduino - Tells avrdude to use the arduino bootloader
--p m328P - Specifies the ATmega328P microcontroller
--P /dev/tty.usbmodem14101 - USB port connected to your Uno
--b 115200 - baud rate (symbols per second) for the bootloader
--U flash:w:blink.hex - writes your .hex file to the Uno’s flash memory
+# Hardware
+1. Microcontroller/board: ATmega328P/ Uno R3
+2. USB cable (USB - Uno R3 compatible)
 
-7. Wait for upload to complete
-8. Run the program
+# Project Functionality
+This project demonstrates basic GPIO control on the ATmega328P by toggling the built-in LED connected to PB5. The microcontroller’s Data Direction Register (DDR) is configured to set PB5 as an output, and the program alternates the pin between high and low states with a one-second delay, producing a continuous blinking effect on the onboard LED. This simple project provides hands-on experience with register-level programming and microcontroller pin manipulation.
 
+# Outcomes
+* Did it work as intended: Yes
+* Challenges faced: There was no real challenges faced on this one, mostly learning key embedded concepts for the first time.
+* Lessons Learned: 
+
+1. When using non-standard or custom header files in VS Code, you need to update the configuration file to include the locations of those headers. If this isn’t done, IntelliSense may mark the headers as incorrect, although compilation might still succeed. 
+2. To flash a .hex file to an ATmega328P using the Arduino bootloader, the avrdude command-line tool is used. Key components of the command that is needed to do this includes:
+
+-c arduino → Tells avrdude to use the Arduino bootloader protocol.
+-p m328p → Specifies the target microcontroller as the ATmega328P.
+-P /dev/tty.usbmodem14101 → The USB port where your Arduino Uno is connected.
+-b 115200 → The baud rate (symbols per second) for communication with the bootloader.
+-U flash:w:blink.hex → Writes the compiled .hex file (e.g., blink.hex) to the flash memory of the Uno.
+
+This ensures your program is correctly uploaded to the microcontroller.
+
+# Project Progression
+* Skill level demonstrated: Beginner
+* How it builds on previous projects: It is the first project that I have done thus far.
 
