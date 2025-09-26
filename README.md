@@ -11,8 +11,8 @@ Each project is organized to clearly separate source code, build artifacts, and 
 * Code - src (source files), build, Makefile
 * Project Output
 
-# How to use this wiki
-This wiki serves as a guide to:
+# How to use this README
+This README serves as a guide to:
 
 * Explore my embedded systems projects
 * Understand the objectives and challenges of each project
