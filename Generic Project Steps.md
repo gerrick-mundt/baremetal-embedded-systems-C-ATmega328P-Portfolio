@@ -13,7 +13,7 @@ this by creating a new file and naming it "Makefile".
 7. Run: “make” (this compiles your code)
 
 ## Step 3: Upload the program to the Uno R3 using bootloader
-1. Connect the Uno R3 to your computer using US
+1. Connect the Uno R3 to your computer using USB (can use USB to USB-C converter)
 2. Open up the terminal in VS Code
 3. Open a terminal in VS Code
 4. In the terminal, verify the USB ports using: ls /dev/tty.*
