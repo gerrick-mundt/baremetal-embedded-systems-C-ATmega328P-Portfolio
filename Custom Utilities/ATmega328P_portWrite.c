@@ -30,7 +30,7 @@ bool uint8t_portCheck(volatile uint8_t *reg)
 //--------------------------------------------------
 // Port write function for 8-bit registers
 //--------------------------------------------------
-void uint8t_PortWrite(volatile uint8_t *port, uint8_t pin, bool value)
+void pw8(volatile uint8_t *port, uint8_t pin, bool value)
 {
     // Error Case: Port input is not valid
     if(!uint8t_portCheck(port)) return;
