@@ -2,24 +2,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <avr/io.h>
-
-//--------------------------------------------------
-// GPIO Type Definitions
-//--------------------------------------------------
-
-// Pin state for GPIO
-typedef enum
-{
-    LOW = 0,
-    HIGH = 1
-} pinState_t;
-
-// Pin direction for GPIO
-typedef enum
-{
-    INPUT = 0,
-    OUTPUT = 1
-} pinDirection_t;
+#include "ATmega328P_common.h"
 
 //--------------------------------------------------
 // GPIO Functions
