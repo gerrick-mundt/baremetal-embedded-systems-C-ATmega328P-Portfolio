@@ -1,25 +1,60 @@
-# MCU and Clock
+#--------------------------------------------------
+# MCU and clock settings
+#--------------------------------------------------
 MCU = atmega328p
 F_CPU = 16000000UL
 
-# Compiler and Flags
-CC = /opt/homebrew/bin/avr-gcc
-CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os -Wall
+#--------------------------------------------------
+# Source files
+#--------------------------------------------------
+SRC = /Users/gerrickmundt/Documents/Baremetal_Code/Project5_ATmega328P_InterruptLED/main.c \
+      /Users/gerrickmundt/Documents/Baremetal_Code/ATmega328P_portWrite.c
 
-# Files
+#--------------------------------------------------
+# Include paths
+#--------------------------------------------------
+INC = -I/Users/gerrickmundt/Documents/Baremetal_Code
+
+#--------------------------------------------------
+# Output file names
+#--------------------------------------------------
 TARGET = main
-SRC = PushButton-LED-Control_main.c
+ELF = $(TARGET).elf
+HEX = $(TARGET).hex
 
-# Rules
-all: $(TARGET).hex
+#--------------------------------------------------
+# Compiler and flags
+#--------------------------------------------------
+CC = avr-gcc
+CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU) $(INC) -Wall
 
-$(TARGET).elf: $(SRC)
-	$(CC) $(CFLAGS) -o $@ $^
+#--------------------------------------------------
+# Tools
+#--------------------------------------------------
+OBJCOPY = avr-objcopy
+AVRDUDE = avrdude
 
-$(TARGET).hex: $(TARGET).elf
-	avr-objcopy -O ihex -R .eeprom $< $@
+#--------------------------------------------------
+# Default target: build ELF and HEX
+#--------------------------------------------------
+all: $(HEX)
 
+# Build ELF
+$(ELF): $(SRC)
+	$(CC) $(CFLAGS) -o $(ELF) $(SRC)
+
+# Convert ELF to HEX
+$(HEX): $(ELF)
+	$(OBJCOPY) -O ihex -R .eeprom $(ELF) $(HEX)
+
+#--------------------------------------------------
+# Flash target
+#--------------------------------------------------
+flash: $(HEX)
+	$(AVRDUDE) -c arduino -p $(MCU) -P /dev/tty.usbmodem1101 -b 115200 -U flash:w:$(HEX)
+
+#--------------------------------------------------
+# Clean target
+#--------------------------------------------------
 clean:
-	rm -f $(TARGET).elf $(TARGET).hex
-
-.PHONY: all clean
+	rm -f $(ELF) $(HEX)
