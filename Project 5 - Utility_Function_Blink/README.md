@@ -1,5 +1,5 @@
 # Description
-This project is identical to Project 2, but in this version, I implemented my own custom utility files to handle register writes instead of using the atomic method.
+This project is identical to Project 2, but in this version, I created and used custom utility files to perform register writes instead of relying on the atomic method. The ATmega328P_common.c source file contains all utility function definitions, while all enums are declared in the corresponding header file.
 
 # Source Files
 - [main.c](https://github.com/gerrick-mundt/baremetal-embedded-systems-C-ATmega328P-Portfolio/blob/main/Project%205%20-%20Utility_Function_Blink/Source/main.c)
