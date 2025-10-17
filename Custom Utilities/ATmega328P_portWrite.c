@@ -4,47 +4,94 @@
 #include <avr/io.h>
 
 //--------------------------------------------------
-// Check if uint8_t register input is writable
+// GPIO Type Definitions
 //--------------------------------------------------
-bool uint8t_portCheck(volatile uint8_t *reg)
+
+// Pin state for GPIO
+typedef enum
 {
-    return (
-        // GPIO
-        reg == &PORTB || reg == &PORTC || reg == &PORTD ||
-        reg == &DDRB  || reg == &DDRC  || reg == &DDRD  ||
-        // SPI
-        reg == &SPCR  || reg == &SPDR  ||
-        // UART
-        reg == &UCSR0A || reg == &UCSR0B || reg == &UDR0 ||
-        // ADC
-        reg == &ADCSRA || reg == &ADMUX || reg == &ADCH || reg == &ADCL ||
-        // Timers
-        reg == &TCCR0A || reg == &TCCR0B || reg == &OCR0A || reg == &OCR0B ||
-        reg == &TCCR1A || reg == &TCCR1B || reg == &OCR1AH || reg == &OCR1AL ||
-        reg == &TCCR2A || reg == &TCCR2B || reg == &OCR2A || reg == &OCR2B ||
-        // Misc control
-        reg == &MCUCR  || reg == &MCUSR || reg == &WDTCSR
-    );
-}
+    LOW = 0,
+    HIGH = 1
+} pinState_t;
+
+// Pin direction for GPIO
+typedef enum
+{
+    INPUT = 0,
+    OUTPUT = 1
+} pinDirection_t;
 
 //--------------------------------------------------
-// Port write function for 8-bit registers
+// GPIO Functions
 //--------------------------------------------------
-void pw8(volatile uint8_t *port, uint8_t pin, bool value)
+
+// Pin Read Function - Reads the current pin state
+
+
+// Pin Write Function - Writes pin state HIGH or LOW
+void gpio_write(volatile uint8_t *port, uint8_t pin, pinState_t state)
 {
-    // Error Case: Port input is not valid
-    if(!uint8t_portCheck(port)) return;
-    
-    // Error Case: Pin input is not valid
-    if (pin > 7) return;
-    
-    // Nominal Case
-    if(value)
+    // Validate port register
+    if (port != &PORTB && port != &PORTC && port != &PORTD)
     {
-        *port |= (1 << pin); // Set bit high
+        return; // Invalid port
+    }
+
+    // Validate pin (PORTC only has pins 0-6)
+    if (pin > 7 || (port == &PORTC && pin > 6))
+    {
+        return; // Invalid pin
+    }
+
+    // Validate state
+    if (state != LOW && state != HIGH)
+    {
+        return; // Invalid state
+    }
+
+    // Write pin state
+    if (state == HIGH)
+    {
+        *port |= (1 << pin);
     }
     else
     {
-        *port &= ~(1 << pin); // Set bit low
+        *port &= ~(1 << pin);
     }
 }
+
+// Pin Direction Set Function - Sets a pin as an input or an output
+void gpio_direction(volatile uint8_t *ddr, uint8_t pin, pinDirection_t direction)
+{
+    // Validate Direction Register
+    if (ddr != &DDRB && ddr != &DDRC && ddr != &DDRD)
+    {
+        return; // Invalid port
+    }
+
+    // Validate pin (DDRC only has 0-6 available)
+    if ((pin > 7) || (ddr == &DDRC && pin > 6))
+    {
+        return;
+    }
+
+    // Validate direction
+    if (direction != INPUT && direction != OUTPUT)
+    {
+        return;
+    }
+
+    // Set pin direction
+    if (direction == OUTPUT)
+    {
+        *ddr |= (1 << pin);
+    }
+    else
+    {
+        *ddr &= ~(1 << pin);
+    }
+}
+
+// Pin Toggle Function - Inverts current state from HIGH to LOW or vice versa)
+// Activate Internal Pull-up Resistor
+// Deactivate Internal Pull-up Resistor
