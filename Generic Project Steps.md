@@ -5,7 +5,7 @@
 ## Step 2: Generate the .hex file
 1. Create a _**makefile**_ in the same folder as your main source file. Do 
 this by creating a new file and naming it "Makefile".
-2. Copy and paste the following: [Makefile Template](https://github.com/gerrick-mundt/baremetal-embedded-systems-C-ATmega328P-Portfolio/blob/main/Makefile)
+2. Copy and paste the following: [Makefile Template]([https://github.com/gerrick-mundt/baremetal-embedded-systems-C-ATmega328P-Portfolio/blob/main/Makefile](https://github.com/gerrick-mundt/baremetal-embedded-systems-C-ATmega328P-Portfolio/blob/main/Makefile%20Template))
 3. If your main file is not named main.c update the SRC = main.c line
 4. Make sure you have the correct compiler path. If your path is not CC = avr-gcc, change the name to the correct one (e.g. CC = /opt/homebrew/bin/avr-gcc) 
 5. Open a terminal in VS code (Terminal > New Terminal)
