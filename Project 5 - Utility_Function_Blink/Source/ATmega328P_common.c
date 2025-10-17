@@ -8,9 +8,6 @@
 // GPIO Functions
 //--------------------------------------------------
 
-// Pin Read Function - Reads the current pin state
-
-
 // Pin Write Function - Writes pin state HIGH or LOW
 void gpio_write(volatile uint8_t *port, uint8_t pin, pinState_t state)
 {
@@ -74,7 +71,3 @@ void gpio_direction(volatile uint8_t *ddr, uint8_t pin, pinDirection_t direction
         *ddr &= ~(1 << pin);
     }
 }
-
-// Pin Toggle Function - Inverts current state from HIGH to LOW or vice versa)
-// Activate Internal Pull-up Resistor
-// Deactivate Internal Pull-up Resistor
